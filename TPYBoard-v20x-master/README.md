@@ -2,11 +2,11 @@
 
 <h2>TPYBoard v201</h2>
 
-<img src="https://github.com/TPYBoard/TPYBoard-v20x/blob/master/image/v201.jpg" style="max-width:100%;">
+<img src="https://github.com/TPYBoard/developmentBoard/blob/master/TPYBoard-v20x-master/image/v201.jpg" style="max-width:100%;">
 
 <h2>TPYBoard v202</h2>
 
-<img src="https://github.com/TPYBoard/TPYBoard-v20x/blob/master/image/v202.png" style="max-width:100%;">
+<img src="https://github.com/TPYBoard/developmentBoard/blob/master/TPYBoard-v20x-master/image/v202.png" style="max-width:100%;">
 
 
 典型实例文档资料：http://docs.tpyboard.com/

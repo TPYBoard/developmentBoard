@@ -2,7 +2,7 @@
 
 <h2>TPYBoard v702</h2>
 
-<img src="https://github.com/TPYBoard/TPYBoard-v70x/blob/master/image/v702.png" style="max-width:100%;">
+<img src="https://github.com/TPYBoard/developmentBoard/blob/master/TPYBoard-v70x-master/image/v702.png" style="max-width:100%;">
 
 
 
