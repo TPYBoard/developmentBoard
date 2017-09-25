@@ -1,8 +1,4 @@
 """
-SHT20 RTC drive
-Author: shaoziyang
-2016.May
-
 >>> from SHT20 import SHT20
 
 """
