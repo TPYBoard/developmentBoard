@@ -63,7 +63,6 @@ except:
 import struct
 import time
 import font
-import han
 class PCD8544:
     ADDRESSING_HORIZ = 0x00
     ADDRESSING_VERT  = 0x02
@@ -133,7 +132,6 @@ class PCD8544:
         self.clear()
 
         self.lcd_font = font.FONT6_8()
-        self.lcd_han= han.FONT16_8()
 
     def _set_function(self):
         """ Write current power/addressing/instructionset values to lcd. """
