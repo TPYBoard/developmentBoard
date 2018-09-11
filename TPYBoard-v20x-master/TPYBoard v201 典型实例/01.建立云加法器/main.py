@@ -4,22 +4,22 @@ from pyb import Pin
 from ubinascii import hexlify
 from ubinascii import *
 
-ulan = UART(6, 9600)#¶¨ÒåÁ¬½ÓÍø¿ÚµÄ´®¿Ú
+ulan = UART(6, 9600,timeout = 100)#å®šä¹‰è¿žæŽ¥ç½‘å£çš„ä¸²å£
 K=1
 jia=0
 jie1=0
 he=0
-js=0#ÉèÖÃ¼Ä´æ±äÁ¿
-#*******************************Ö÷³ÌÐò**********************************
+js=0#è®¾ç½®å¯„å­˜å˜é‡
+#*******************************ä¸»ç¨‹åº**********************************
 print('while')
 while (K>0):
-    _dataRead=ulan.readall()#¶ÁÈ¡¿Í»§¶ËÊý¾Ý
-    if _dataRead!=None:#ÅÐ¶Ï¿Í»§¶ËÊÇ·ñ´«À´Êý¾Ý
+    _dataRead=ulan.readall()#è¯»å–å®¢æˆ·ç«¯æ•°æ®
+    if _dataRead!=None:#åˆ¤æ–­å®¢æˆ·ç«¯æ˜¯å¦ä¼ æ¥æ•°æ®
         print(_dataRead)
-        js=js+1#¼ÆÊýÅÐ¶ÏÖ´ÐÐÃüÁî±êÖ¾
+        js=js+1#è®¡æ•°åˆ¤æ–­æ‰§è¡Œå‘½ä»¤æ ‡å¿—
         if(js==1):
-            jia=_dataRead.decode('utf-8')#Êý¾Ý×ª»»
-            jia=int(jia)#Êý¾Ý×ª»»
+            jia=_dataRead.decode('utf-8')#æ•°æ®è½¬æ¢
+            jia=int(jia)#æ•°æ®è½¬æ¢
             print(jia)
         if(js==2):
             jia1=_dataRead.decode('utf-8')
@@ -28,4 +28,4 @@ while (K>0):
         if(js==2):
             he=jia+jia1
             js=0
-            ulan.write(str(jia)+'+'+str(jia1)+'='+str(he)+'\r\n')#¼ÆËã½á¹û·µ»Ø¸ø¿Í»§¶Ë
+            ulan.write(str(jia)+'+'+str(jia1)+'='+str(he)+'\r\n')#è®¡ç®—ç»“æžœè¿”å›žç»™å®¢æˆ·ç«¯

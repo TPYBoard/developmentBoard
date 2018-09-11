@@ -3,21 +3,21 @@ from pyb import UART
 from pyb import Pin
 from ubinascii import hexlify
 from ubinascii import *
-from dht11 import DHT11#¶¨ÒåÎÂÊª¶È´«¸ĞÆ÷µÄ¿â
+from dht11 import DHT11#å®šä¹‰æ¸©æ¹¿åº¦ä¼ æ„Ÿå™¨çš„åº“
 
-ulan = UART(6, 115200)#¶¨Òå´®¿Ú£¬ÎÒµÄÍø¿ÚÉèÖÃÁË115200µÄ²¨ÌØÂÊ
+ulan = UART(6, 115200 , timeout = 100)#å®šä¹‰ä¸²å£ï¼Œæˆ‘çš„ç½‘å£è®¾ç½®äº†115200çš„æ³¢ç‰¹ç‡
 K=1
-#*******************************Ö÷³ÌĞò**********************************
+#*******************************ä¸»ç¨‹åº**********************************
 print('while')
 while (K>0):
     #init DHT11 
     dht=DHT11('X8')
-    data_=dht.read_data()#¶ÁÈ¡ÎÂÊª¶ÈµÄÖµ
-    temp=str(data_[0])#ÎÂ¶È
-    hum=str(data_[1])#Êª¶È
+    data_=dht.read_data()#è¯»å–æ¸©æ¹¿åº¦çš„å€¼
+    temp=str(data_[0])#æ¸©åº¦
+    hum=str(data_[1])#æ¹¿åº¦
     print('temp:'+temp)
     print('hum:'+hum)
-    ulan.write('temperature is:'+temp+'\r\n')#ÉÏ´«ÎÂ¶È
-    pyb.delay(2000)#×öÑÓÊ±ÊÇÎªÁËÈÃ¸øÄ£Äâ·şÎñÆ÷Ò»¸ö·´Ó¦Ê±¼ä
-    ulan.write('wet is:'+hum+'%'+'\r\n')#ÉÏ´«Êª¶È
+    ulan.write('temperature is:'+temp+'\r\n')#ä¸Šä¼ æ¸©åº¦
+    pyb.delay(2000)#åšå»¶æ—¶æ˜¯ä¸ºäº†è®©ç»™æ¨¡æ‹ŸæœåŠ¡å™¨ä¸€ä¸ªååº”æ—¶é—´
+    ulan.write('wet is:'+hum+'%'+'\r\n')#ä¸Šä¼ æ¹¿åº¦
     pyb.delay(12000)
