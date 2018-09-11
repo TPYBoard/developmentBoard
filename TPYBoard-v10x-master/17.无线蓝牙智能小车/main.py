@@ -9,13 +9,13 @@ N2 = Pin('Y2', Pin.OUT_PP)
 N3 = Pin('Y3', Pin.OUT_PP)
 N4 = Pin('Y4', Pin.OUT_PP)
 
-u2 = UART(2, 9600)
+u2 = UART(2, 9600,timeout = 100)
 
 while True:
     pyb.LED(2).on()
     pyb.LED(3).on()
     pyb.LED(4).on()
-    _dataRead=u2.readall()
+    _dataRead=u2.read()
     if _dataRead!=None:
         #ֹͣ
         if(_dataRead.find(b'\xa5Z\x04\xb1\xb5\xaa')>-1):

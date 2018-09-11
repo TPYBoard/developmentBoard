@@ -5,10 +5,10 @@ from ubinascii import hexlify
 from ubinascii import *
 M1 = Pin('X1', Pin.OUT_PP)
 M3 = Pin('Y1', Pin.OUT_PP)
-u2 = UART(2, 9600)
+u2 = UART(2, 9600,timeout = 100)
 i=0
 K=1
-*******************************主程序**********************************
+#*******************************主程序**********************************
 print('while')
 while (K>0):
     M1.high()

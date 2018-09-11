@@ -6,11 +6,11 @@ from pyb import Pin
 #from ubinascii import hexlify
 from ubinascii import *
 accel = pyb.Accel()
-u2 = UART(2, 9600)
+u2 = UART(2,9600,timeout=100)
 i=0
 K=1
 
-*******************************主程序**********************************
+#*******************************主程序**********************************
 print('while')
 while (K>0):
     _dataRead=u2.readall()
@@ -22,14 +22,12 @@ while (K>0):
             xlights[0].on()
             xlights[1].off()
             u2.write('\x00\x05\x18YOU')
-            #pyb.delay(1000)
             print('\x00\x01\x18YOU')
         elif x < -10:
             xlights[1].on()
             xlights[0].off()
             u2.write('\x00\x05\x18ZUO')
             print('\x00\x01\x18ZUO')
-            #pyb.delay(1000)
 
         else:
             xlights[0].off()
@@ -41,14 +39,10 @@ while (K>0):
         if y > 15:
             ylights[0].on()
             ylights[1].off()
-            #u2.write('\x00\x05\x18HOU')
-            #pyb.delay(1000)
-            #print('\x00\x01\x18HOU')
         elif y < -15:
             ylights[1].on()
             ylights[0].off()
             u2.write('\x00\x05\x18QIAN')
-            #pyb.delay(1000)
             print('\x00\x01\x18QIAN')
         else:
             ylights[0].off()

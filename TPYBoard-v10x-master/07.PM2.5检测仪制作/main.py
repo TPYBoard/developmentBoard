@@ -37,7 +37,7 @@ while True:
     Quality='DATA NULL'
     if(u2.any()>0):
         u2.deinit()
-        _dataRead=u2.readall()
+        _dataRead=u2.read()
         #R代表截取数据的起始位
         R=_dataRead.find(b'\xaa')
         #R>-1代表存在起始位，长度大于起始位位置+2
