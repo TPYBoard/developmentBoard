@@ -17,35 +17,35 @@ while True:
     pyb.LED(4).on()
     _dataRead=u2.read()
     if _dataRead!=None:
-        #停止
+        #鍋滄
         if(_dataRead.find(b'\xa5Z\x04\xb1\xb5\xaa')>-1):
             print('stop')
             N1.low()
             N2.low()
             N3.low()
             N4.low()
-        #向左
+        #鍚戝乏
         elif(_dataRead.find( b'\xa5Z\x04\xb4\xb8\xaa')>-1):
             print('left')
             N1.low()
             N2.high()
             N3.high()
             N4.low()
-        #向右
+        #鍚戝彸
         elif(_dataRead.find( b'\xa5Z\x04\xb6\xba\xaa')>-1):
             print('right')
             N1.high()
             N2.low()
             N3.low()
             N4.high()
-        #后退
+        #鍚庨��
         elif(_dataRead.find(b'\xa5Z\x04\xb5\xb9\xaa')>-1):
             print('back')
             N2.high()
             N1.low()
             N4.high()
             N3.low()
-        #向前    
+        #鍚戝墠    
         elif(_dataRead.find( b'\xa5Z\x04\xb2\xb6\xaa')>-1):
             print('go')
             N1.high()
