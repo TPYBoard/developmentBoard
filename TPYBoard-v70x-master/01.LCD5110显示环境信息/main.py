@@ -4,14 +4,10 @@ import pyb
 import upcd8544
 from machine import SPI,Pin
 from pyb import UART
-from ubinascii import hexlify
-from ubinascii import *
-from SHT20 import SHT20
-
-
-ds=SHT20(1)
-leds = [pyb.LED(i) for i in range(1,5)]
-P,L,SHUCHU=0,0,0
+from sht20 import SHT20
+ 
+ 
+ds = SHT20(1)
 SPI = pyb.SPI(1) #DIN=>X8-MOSI/CLK=>X6-SCK
 #DIN =>SPI(1).MOSI 'X8' data flow (Master out, Slave in)
 #CLK =>SPI(1).SCK  'X6' SPI clock
@@ -20,7 +16,6 @@ CE     = pyb.Pin('X19')
 DC     = pyb.Pin('X18')
 LIGHT  = pyb.Pin('X17')
 lcd_5110 = upcd8544.PCD8544(SPI, RST, CE, DC, LIGHT)
-count_=0
 N2 = Pin('Y3', Pin.OUT_PP)
 N1 = Pin('Y6', Pin.OUT_PP)
 N1.low()
@@ -36,7 +31,7 @@ while True:
     S=ds.TEMP1()
     H=125*H/256-6
     S=175.72*S/256-46.85
-    if(a<10):
+    if(a<17):
         N2.high()
     lcd_5110.lcd_write_string('WENDU:',0,0)
     lcd_5110.lcd_write_string(str(S),0,1)
