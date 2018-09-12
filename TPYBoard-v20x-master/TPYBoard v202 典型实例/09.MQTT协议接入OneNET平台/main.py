@@ -1,0 +1,2 @@
+import mqtt
+mqtt.main()
