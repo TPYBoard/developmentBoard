@@ -1,23 +1,23 @@
 import pyb
-from pyb importUART,Switch
+from pyb import UART,Switch
 import upcd8544
 
 #-----command---------#
-initcmd=b'\x56\x00\x26\x00'#¸´Î»
-clearcmd=b'\x56\x00\x36\x01\x02'#Çå³ı»º´æ
-photocmd=b'\x56\x00\x36\x01\x00'#ÅÄÕÕ
-lengthcmd=b'\x56\x00\x34\x01\x00'#»ñÈ¡Í¼Æ¬³¤¶È
-readcmd=b'\x56\x00\x32\x0C\x00\x0A\x00\x00'#»ñÈ¡Í¼Æ¬Êı¾İ
-responseCmd=b'\x76\x00\x32\x00\x00'#·µ»ØµÄÍ¼Æ¬Êı¾İ¹Ì¶¨Í·ºÍÎ²
+initcmd=b'\x56\x00\x26\x00'#å¤ä½
+clearcmd=b'\x56\x00\x36\x01\x02'#æ¸…é™¤ç¼“å­˜
+photocmd=b'\x56\x00\x36\x01\x00'#æ‹ç…§
+lengthcmd=b'\x56\x00\x34\x01\x00'#è·å–å›¾ç‰‡é•¿åº¦
+readcmd=b'\x56\x00\x32\x0C\x00\x0A\x00\x00'#è·å–å›¾ç‰‡æ•°æ®
+responseCmd=b'\x76\x00\x32\x00\x00'#è¿”å›çš„å›¾ç‰‡æ•°æ®å›ºå®šå¤´å’Œå°¾
 #---------------------------------#
-isFlag=0#±êÊ¶ÊÇ·ñ³õÊ¼»¯
-isPhoto=0#±êÊ¶ÊÇ·ñ·¢ËÍÅÄÕÕÃüÁî
+isFlag=0#æ ‡è¯†æ˜¯å¦åˆå§‹åŒ–
+isPhoto=0#æ ‡è¯†æ˜¯å¦å‘é€æ‹ç…§å‘½ä»¤
 num=0
 f_name='/sd/photo%s.jpeg'
-nBytes=2048#Ã¿´Î¶ÁÈ¡µÄ×Ö½ÚÊı
+nBytes=2048#æ¯æ¬¡è¯»å–çš„å­—èŠ‚æ•°
 #---------------------------------#
 uart=UART(4,115200,timeout=100)#X1(UART4 TX) X2(UART 4 RX)
-#-------Ê®½øÖÆ×ª16½øÖÆ------------#
+#-------åè¿›åˆ¶è½¬16è¿›åˆ¶------------#
 defconvert_Data(num):
    if num>255:
        num_h=hex(num)
@@ -56,7 +56,7 @@ def test():
        isPhoto=0
        num+=1
        pyb.LED(3).on()
-       #Çå³ı»º´æ
+       #æ¸…é™¤ç¼“å­˜
        uart.write(clearcmd)
 #-------LCD5110Init-----------#
 SPI    = pyb.SPI(1) #DIN=>X8-MOSI/CLK=>X6-SCK
@@ -78,9 +78,9 @@ while True:
        data=uart.read()
        print('revdata:',data)
        if isFlag==0:
-           #ËµÃ÷½ÓÊÕµÄÊÇ¸´Î»ºóµÄĞÅÏ¢
+           #è¯´æ˜æ¥æ”¶çš„æ˜¯å¤ä½åçš„ä¿¡æ¯
            if data==b'Init end\r\n':
-               #¸´Î»Íê±Ï
+               #å¤ä½å®Œæ¯•
                print('init ok.......')
                pyb.delay(2000)
                isFlag=1
@@ -91,14 +91,14 @@ while True:
                if data[0]==118:#0x76
                    if data[2]==54:#0x36
                        if isPhoto==0:
-                           #Çå³ı»º´æ·µ»Ø
+                           #æ¸…é™¤ç¼“å­˜è¿”å›
                            print('-----clearbuffer ok----')
                            isPhoto=1
                           uart.write(photocmd)
                            lcd_5110.clear()
                           lcd_5110.lcd_write_bmp(1)
                        else:
-                           #ÅÄÕÕ·µ»Ø
+                           #æ‹ç…§è¿”å›
                            print('-----takingpictures ok----')
                           uart.write(lengthcmd)
                    if data[2]==52:#0x34
