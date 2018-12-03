@@ -207,8 +207,10 @@ class PCD8544:
         """ set cursor to bank y, column x """
         assert 0 <= x < self.width, "x must be between 0 and 83"
         assert 0 <= y < self.height // 8, "y must be between 0 and 5"
+        #assert 0 <= y < self.height , "y must be between 0 and 47"
         assert self.instr == self.INSTR_BASIC, "Please switch to basic instruction set first."
         self.command([x + 0x80, y + 0x40])
+        
 
     def clear(self):
         """ clear screen """
@@ -284,3 +286,22 @@ class PCD8544:
         self.position(x, y)
         for i in string:
             self.data(self.lcd_font.get_font6_8(i))
+    def lcd_write_bmp(self,num=3,offset=0):
+        data=[]
+        if num==0:
+            data=self.lcd_font.BMP_OK
+        elif num==1:
+            data=self.lcd_font.BMP_CHI
+        elif num==2:
+            data=self.lcd_font.BMP_Yes
+        else:
+            data=[[0xFF,0xFF,0xFF,0xFF,0xFF,0xFF] for i in range(0,84)]
+        #bmp_len=len(self.lcd_font.BMP_Heart)
+        for i in range(0,6):
+            for j in range(0,14):
+                x=(j+offset)*6
+                if x>83:
+                    break
+                self.position(x,i)
+                position=j+(i*14)
+                self.data(data[position])
