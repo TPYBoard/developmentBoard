@@ -2,6 +2,8 @@ import pyb
 from pyb import UART,Switch
 import upcd8544
 
+
+
 #-----command---------#
 initcmd=b'\x56\x00\x26\x00' #复位
 clearcmd=b'\x56\x00\x36\x01\x02' #清除缓存
