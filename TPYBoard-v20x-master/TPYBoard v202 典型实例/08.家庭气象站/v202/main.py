@@ -7,7 +7,7 @@ import time
 u2=UART(0,115200)#串口初始化
 led = Pin(2, Pin.OUT).value(1)#板载小蓝灯 默认关闭
 def http_get(temp,hum):
-    url='http://www.tpyboard.com/esp8266/SensorTest.php?t='+temp+'&h='+hum+''
+    url='http://old.tpyboard.com/esp8266/SensorTest.php?t='+temp+'&h='+hum+''
     _, _, host, path = url.split('/', 3)
     addr = socket.getaddrinfo(host, 80)[0][-1]
     s = socket.socket()
