@@ -59,4 +59,4 @@ class DHT11:
             print('temperature is',temperature,'-wet is',humidity,'%')
         else:
             print('Error:',humidity,humidity_point,temperature,temperature_point,check)
-        return [str(temperature),str(humidity)]
+        return [temperature,humidity]
