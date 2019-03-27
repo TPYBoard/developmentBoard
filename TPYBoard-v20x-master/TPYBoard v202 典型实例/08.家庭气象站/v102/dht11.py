@@ -1,6 +1,6 @@
 import pyb
 from pyb import UART
-from pyb import Pin
+from pyb import Pin,delay,udelay
 import time
 class DHT11:
     def __init__(self,pin_name):
@@ -14,11 +14,12 @@ class DHT11:
         j=0
         N1=self.N1
         N1.low()
-        time.sleep(0.03)
+        delay(20)
         N1.high()
         N1 = Pin(self.PinName, Pin.IN)
-        while N1.value()==1:
-            continue
+        udelay(30)
+        if N1.value() != 0:
+            return [0,0]
         while N1.value()==0:
             continue
         while N1.value()==1:
