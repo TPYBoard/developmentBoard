@@ -1,5 +1,5 @@
 import pyb
-from ssd1306 import SSD1306
+from ssd1306_lib import SSD1306
 
 # SPI
 display = SSD1306(pinout={'dc': 'Y9',

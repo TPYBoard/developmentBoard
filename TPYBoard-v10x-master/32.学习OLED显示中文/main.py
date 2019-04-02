@@ -1,5 +1,5 @@
 import pyb
-from ssd1306 import SSD1306
+from ssd1306_lib import SSD1306
 import math
 import font
 from pyb import Timer
